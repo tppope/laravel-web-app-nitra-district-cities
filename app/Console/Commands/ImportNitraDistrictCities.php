@@ -69,10 +69,9 @@ class ImportNitraDistrictCities extends Command
             $this
                 ->dom
                 ->getElementById('okres')
-                ->getElementsByTagName('a')
+                ?->getElementsByTagName('a')
                 ->getIterator()
-        )
-            ->map(fn(DOMNode $node) => $node->attributes->getNamedItem('href')->textContent);
+        )->map(fn(DOMNode $node) => $node->attributes->getNamedItem('href')->textContent);
     }
 
     private function getAllSubDistrictsCitiesUrls(): Collection
