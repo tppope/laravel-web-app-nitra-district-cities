@@ -35,6 +35,7 @@ class ImportNitraDistrictCities extends Command
         $url = 'https://www.e-obce.sk/kraj/NR.html';
         $this->loadHtmlDom($url);
 
+        $allSubDistrictUrls = $this->getAllSubDistrictsUrls();
 
     }
 
@@ -53,6 +54,19 @@ class ImportNitraDistrictCities extends Command
         libxml_use_internal_errors(false);
 
     }
+
+    private function getAllSubDistrictsUrls(): Collection
+    {
+        return collect(
+            $this
+                ->dom
+                ->getElementById('okres')
+                ->getElementsByTagName('a')
+                ->getIterator()
+        )
+            ->map(fn(DOMNode $node) => $node->attributes->getNamedItem('href')->textContent);
+    }
+
 
 
 }
