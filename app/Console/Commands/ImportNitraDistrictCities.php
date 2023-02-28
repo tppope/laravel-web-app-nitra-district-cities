@@ -6,6 +6,7 @@ use DOMDocument;
 use DOMNode;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class ImportNitraDistrictCities extends Command
 {
@@ -35,8 +36,15 @@ class ImportNitraDistrictCities extends Command
         $url = 'https://www.e-obce.sk/kraj/NR.html';
         $this->loadHtmlDom($url);
 
-        $allSubDistrictUrls = $this->getAllSubDistrictsUrls();
+        $allSubDistrictsUrls = $this->getAllSubDistrictsUrls();
 
+        $allSubDistrictsUrls->each(function (string $subDistrictUrl) {
+            $this->loadHtmlDom($subDistrictUrl);
+
+            $allSubDistrictsCitiesUrls = $this->getAllSubDistrictsCitiesUrls();
+
+
+        });
     }
 
     private function loadHtmlDom(string $url)
@@ -66,6 +74,27 @@ class ImportNitraDistrictCities extends Command
         )
             ->map(fn(DOMNode $node) => $node->attributes->getNamedItem('href')->textContent);
     }
+
+    private function getAllSubDistrictsCitiesUrls(): Collection
+    {
+        return collect(
+            $this
+                ->dom
+                ->getElementById('telo')
+                ?->getElementsByTagName('a')->getIterator()
+        )
+            ->filter(
+                fn(DOMNode $node) => $node->childNodes->length === 1
+                    && Str::contains(
+                        $node
+                            ->attributes
+                            ->getNamedItem('href')
+                            ->textContent,
+                        '/obec/')
+            )
+            ->map(fn(DOMNode $node) => $node->attributes->getNamedItem('href')->textContent);
+    }
+
 
 
 
