@@ -34,6 +34,7 @@ class ImportNitraDistrictCities extends Command
             $batch = $parser->parseAndImport(collect($url));
         } catch (ParseErrorException $error) {
             $this->error($error->getMessage());
+            return;
         }
 
         $progressBar = $this->output->createProgressBar(100);
