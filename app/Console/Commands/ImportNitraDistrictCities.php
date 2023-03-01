@@ -2,17 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Address;
-use App\Models\City;
 use App\Parser\ParserInterface;
-use DOMDocument;
-use DOMNode;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
-use LibXMLError;
 use Psy\Exception\ParseErrorException;
 
 class ImportNitraDistrictCities extends Command
@@ -40,7 +31,7 @@ class ImportNitraDistrictCities extends Command
         $url = 'https://www.e-obce.sk/kraj/NR.html';
 
         try {
-            $parser->parseAndImport($url);
+            $batch = $parser->parseAndImport(collect($url));
         } catch (ParseErrorException $error) {
             $this->error($error->getMessage());
         }

@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Jobs\ParseNitraDistrictCities;
 use App\Parser\NitraDistrictCityParser;
+use App\Parser\NitraSubDistrictsCitiesParser;
 use App\Parser\ParserInterface;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->bindMethod([ParseNitraDistrictCities::class, 'handle'], function (ParseNitraDistrictCities $job, Application $app) {
+            $job->handle($app->make(NitraSubDistrictsCitiesParser::class));
+        });
     }
 }
