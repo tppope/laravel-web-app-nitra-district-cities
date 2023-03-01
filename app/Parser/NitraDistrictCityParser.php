@@ -8,10 +8,14 @@ use Illuminate\Bus\Batch;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Str;
+use Throwable;
 
 class NitraDistrictCityParser extends ParserAbstract implements ParserInterface
 {
 
+    /**
+     * @throws Throwable
+     */
     public function parseAndImport(Collection $urls): Batch|null
     {
         $batch = Bus::batch([])->dispatch();
