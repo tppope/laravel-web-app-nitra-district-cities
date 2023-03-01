@@ -9,6 +9,7 @@ use Illuminate\Bus\Batch;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInterface
@@ -40,6 +41,9 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
 
         parse_str(parse_url($editCityUrl)['query'], $query);
 
+        Storage::disk('public')->put($query['id'] . '.png', file_get_contents($this->getCoatOfArmsImageUrl()));
+
+
         $cityHallAddress = $this->importAddress($cityName);
 
         City::query()->updateOrCreate(
@@ -53,8 +57,16 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
                 'fax' => trim($this->dom->getElementById('Fax')->getAttribute('value')) ?: null,
                 'web_address' => trim($this->dom->getElementById('URL')->getAttribute('value')) ?: null,
                 'email' => trim($this->dom->getElementById('Email')->getAttribute('value')) ?: null,
+                'coat_of_arms_image_path' => Storage::path($query['id'] . '.png'),
                 'city_hall_address_id' => $cityHallAddress->id
             ]);
+    }
+
+    private function getCoatOfArmsImageUrl(): string
+    {
+        return collect($this->dom->getElementsByTagName('img')->getIterator())
+            ->map(fn(DOMNode $node) => $node->attributes->getNamedItem('src')->textContent)
+            ->first(fn(string $url) => Str::contains($url, '/erb.php'));
     }
 
     private function importAddress(string $cityName): Builder|Model
@@ -71,8 +83,8 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
 
     private function getPhoneNumber(): string
     {
-
         return trim($this->dom->getElementById('SmeroveCislo')->getAttribute('value')) . ' / '
             . trim($this->dom->getElementById('Telefon')->getAttribute('value'));
     }
+
 }
