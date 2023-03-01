@@ -36,6 +36,19 @@ class ImportNitraDistrictCities extends Command
             $this->error($error->getMessage());
         }
 
+        $progressBar = $this->output->createProgressBar(100);
+
+        $progressBar->start();
+        while ($batch->progress() < 100) {
+            $progressBar->setProgress($batch->progress());
+            $batch = $batch->fresh();
+        }
+
+        $progressBar->setProgress($batch->progress());
+
+        $progressBar->finish();
+
+
     }
 
 
