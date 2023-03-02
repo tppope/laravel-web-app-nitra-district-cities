@@ -43,6 +43,7 @@ class ImportNitraDistrictCities extends Command
         while ($batch->progress() < 100) {
             $progressBar->setProgress($batch->progress());
             $batch = $batch->fresh();
+            sleep(1);
         }
 
         $progressBar->setProgress($batch->progress());
