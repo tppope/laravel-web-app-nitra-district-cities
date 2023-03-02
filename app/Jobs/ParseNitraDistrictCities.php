@@ -19,7 +19,7 @@ class ParseNitraDistrictCities implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public Collection $nitraSubDistrictsCitiesUrls)
+    public function __construct(protected Collection $nitraSubDistrictsCitiesUrls)
     {
 
     }
