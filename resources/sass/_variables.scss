@@ -1,3 +1,6 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
 // Body
 $body-bg: #f8fafc;
 
@@ -9,3 +12,8 @@ $font-weight-base: 500;
 
 // Colors
 $light-green: rgb(95, 207, 171);
+
+// Bootstrap variables
+$navbar-light-color: $dark;
+$enable-grid-classes: false;
+$enable-cssgrid: true;
