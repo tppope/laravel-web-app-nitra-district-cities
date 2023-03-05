@@ -41,7 +41,8 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
 
         parse_str(parse_url($editCityUrl)['query'], $query);
 
-        Storage::disk('public')->put($query['id'] . '.png', file_get_contents($this->getCoatOfArmsImageUrl()));
+        $coatOfArmsImageFileName = $query['id'] . '.png';
+        Storage::disk('public')->put($coatOfArmsImageFileName, file_get_contents($this->getCoatOfArmsImageUrl()));
 
 
         $cityHallAddress = $this->importAddress($cityName);
@@ -57,7 +58,7 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
                 'fax' => trim($this->dom->getElementById('Fax')->getAttribute('value')) ?: null,
                 'web_address' => trim($this->dom->getElementById('URL')->getAttribute('value')) ?: null,
                 'email' => trim($this->dom->getElementById('Email')->getAttribute('value')) ?: null,
-                'coat_of_arms_image_path' => Storage::path($query['id'] . '.png'),
+                'coat_of_arms_image_file_name' => $coatOfArmsImageFileName,
                 'city_hall_address_id' => $cityHallAddress->id
             ]);
     }
