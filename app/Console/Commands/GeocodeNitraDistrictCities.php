@@ -46,15 +46,5 @@ class GeocodeNitraDistrictCities extends Command
         $progressBar->setProgress($batch->progress());
 
         $progressBar->finish();
-//        $city = City::query()->first();
-//        $geocoder = app('geocoder');
-//        $cityHallAddress = $city->cityHallAddress;
-//        $address = $cityHallAddress->street_name . ' ' . $cityHallAddress->house_number . ', ' . $cityHallAddress->city_name . ', Slovakia';
-//        $result = $geocoder->geocode($address)->get();
-//        $coordinates = $result[0]?->getCoordinates();
-//        $city->latitude =  $coordinates?->getLatitude();
-//        $city->longitude =  $coordinates?->getLongitude();
-//
-//        $city->save();
     }
 }
