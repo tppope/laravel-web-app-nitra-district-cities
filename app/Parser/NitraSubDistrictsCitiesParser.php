@@ -52,7 +52,7 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
             ],
             [
                 'name' => $cityName,
-                'mayor_name' => trim($this->dom->getElementById('Starosta')->getAttribute('value')) ?: null,
+                'mayor_name' => $this->getMayorName() ?: null,
                 'phone_number' => $this->getPhoneNumber() ?: null,
                 'fax' => trim($this->dom->getElementById('Fax')->getAttribute('value')) ?: null,
                 'web_address' => trim($this->dom->getElementById('URL')->getAttribute('value')) ?: null,
@@ -79,6 +79,12 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
             'postal_code' => trim($this->dom->getElementById('Psc')->getAttribute('value')),
             'post_name' => trim($this->dom->getElementById('Posta')->getAttribute('value'))
         ]);
+    }
+
+    private function getMayorName(): string
+    {
+        return trim($this->dom->getElementById('Starosta')->getAttribute('value')) ?:
+            trim($this->dom->getElementById('Primator')->getAttribute('value'));
     }
 
     private function getPhoneNumber(): string
