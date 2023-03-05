@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('cities', function (Blueprint $table) {
-            $table->string('coat_of_arms_image_path')->nullable()->after('email');
+            $table->string('coat_of_arms_image_file_name')->nullable()->after('email');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('cities', function (Blueprint $table) {
-            $table->dropColumn('coat_of_arms_image_path');
+            $table->dropColumn('coat_of_arms_image_file_name');
         });
     }
 };

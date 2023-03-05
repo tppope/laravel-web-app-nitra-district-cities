@@ -41,7 +41,8 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
 
         parse_str(parse_url($editCityUrl)['query'], $query);
 
-        Storage::disk('public')->put($query['id'] . '.png', file_get_contents($this->getCoatOfArmsImageUrl()));
+        $coatOfArmsImageFileName = $query['id'] . '.png';
+        Storage::disk('public')->put($coatOfArmsImageFileName, file_get_contents($this->getCoatOfArmsImageUrl()));
 
 
         $cityHallAddress = $this->importAddress($cityName);
@@ -52,12 +53,12 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
             ],
             [
                 'name' => $cityName,
-                'mayor_name' => trim($this->dom->getElementById('Starosta')->getAttribute('value')) ?: null,
+                'mayor_name' => $this->getMayorName() ?: null,
                 'phone_number' => $this->getPhoneNumber() ?: null,
                 'fax' => trim($this->dom->getElementById('Fax')->getAttribute('value')) ?: null,
                 'web_address' => trim($this->dom->getElementById('URL')->getAttribute('value')) ?: null,
                 'email' => trim($this->dom->getElementById('Email')->getAttribute('value')) ?: null,
-                'coat_of_arms_image_path' => Storage::path($query['id'] . '.png'),
+                'coat_of_arms_image_file_name' => $coatOfArmsImageFileName,
                 'city_hall_address_id' => $cityHallAddress->id
             ]);
     }
@@ -79,6 +80,12 @@ class NitraSubDistrictsCitiesParser extends ParserAbstract implements ParserInte
             'postal_code' => trim($this->dom->getElementById('Psc')->getAttribute('value')),
             'post_name' => trim($this->dom->getElementById('Posta')->getAttribute('value'))
         ]);
+    }
+
+    private function getMayorName(): string
+    {
+        return trim($this->dom->getElementById('Starosta')->getAttribute('value')) ?:
+            trim($this->dom->getElementById('Primator')->getAttribute('value'));
     }
 
     private function getPhoneNumber(): string
