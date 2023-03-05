@@ -1,0 +1,19 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Raleway', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+$font-weight-base: 500;
+
+// Colors
+$light-green: rgb(95, 207, 171);
+
+// Bootstrap variables
+$navbar-light-color: $dark;
+$enable-grid-classes: false;
+$enable-cssgrid: true;

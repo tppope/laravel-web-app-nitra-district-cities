@@ -1,0 +1,50 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Bootstrap icons
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+.btn-green {
+    background-color: $light-green;
+    border-color: $light-green;
+}
+
+#search-box-h1 {
+    font-size: calc(1.375rem + 2vw) !important;
+}
+
+#search-input-wrapper {
+    width: calc(1.375rem + 30vw);
+}
+
+ul {
+    list-style-type: none;
+}
+
+.footer-section {
+    @extend .mt-4;
+    li {
+        @extend .mt-2;
+    }
+}
+
+.footer-grid {
+    row-gap: 0;
+}
+
+h6 {
+    font-weight: bolder;
+}
+
+@include media-breakpoint-down(md) {
+    #search-input-wrapper {
+        width: 100%;
+    }
+}
