@@ -1,5 +1,5 @@
-<div>
-    <div id="search-input-wrapper" class="input-group input-group-sm">
+<div id="search-input-wrapper">
+    <div class="input-group input-group-sm">
         <input placeholder="{{ __("Enter a name") }}"
                wire:model="search"
                type="search"
