@@ -6,22 +6,22 @@
     <div id="main-navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/">
                     {{ __("About us") }}
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/">
                     {{ __("List of cities") }}
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/">
                     {{ __("Inspection") }}
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/">
                     {{ trans_choice("Contact|Contacts", 1) }}
                 </a>
             </li>
