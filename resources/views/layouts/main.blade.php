@@ -13,6 +13,8 @@
 
     @vite('resources/js/app.js')
 
+    @livewireStyles
+
 </head>
 <body class="d-flex flex-column min-vh-100">
 <x-main-header/>
@@ -20,5 +22,6 @@
     {{ $slot }}
 </main>
 <x-main-footer class="mt-auto"/>
+@livewireScripts
 </body>
 </html>

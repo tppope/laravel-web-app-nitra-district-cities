@@ -43,6 +43,10 @@ h6 {
     font-weight: bolder;
 }
 
+.dropdown-menu {
+    max-height: 20rem;
+}
+
 @include media-breakpoint-down(md) {
     #search-input-wrapper {
         width: 100%;

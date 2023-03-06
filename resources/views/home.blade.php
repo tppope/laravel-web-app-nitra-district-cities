@@ -5,6 +5,6 @@
                 {{ __("Search in the municipality database") }}
             </h1>
         </header>
-        <x-search-box/>
+        <livewire:search-box/>
     </section>
 </x-layout::main>
