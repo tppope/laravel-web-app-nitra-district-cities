@@ -22,7 +22,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    {{ __("Contact") }}
+                    {{ trans_choice("Contact|Contacts", 1) }}
                 </a>
             </li>
         </ul>
