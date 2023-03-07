@@ -35,6 +35,7 @@ BladeServiceProvider register new directory path for layout anonymous components
 12. set your ```QUEUE_CONNECTION``` variable in the ```.env``` file for defining queue driver (I use redis)
     1. if you use redis queue driver, install and use the phpredis PHP extension via PECL
     2. run redis server
+    3. set your redis connection information in the```REDIS_HOST, REDIS_PASSWORD, REDIS_PORT``` variables
 13. run ```php artisan queue:work``` to run queue worker (run more workers in more terminals for distributing jobs and
     parallel running)
 14. set your ```GOOGLE_MAPS_API_KEY``` variable in the ```.env``` file for geocoding function using Google Geocoding API
