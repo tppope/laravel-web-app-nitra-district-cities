@@ -10,6 +10,11 @@
 ## About Project
 
 A project in which we obtain information about cities in the Nitra district by parsing data
-from https://www.e-obce.sk/kraj/NR.html. We use import:data and import:geocode commands using redis queue workers. We
-then display a simple homepage using blade templates, scss, bootstrap and the vite build tool. We also display
-information about specific cities that we obtained by parsing. Localization is in English and Slovak language.
+from https://www.e-obce.sk/kraj/NR.html and geocode their location using Google Geocoding API. We use import:data and
+import:geocode artisan commands using redis queue workers. We then display a simple homepage using blade components, scss,
+bootstrap and the vite build tool. We also responsively
+show information about specific cities that we obtained by parsing. Localization is in English and Slovak language. It
+is checked by session in our own middleware. Autocomplete for searching cities is developed using livewire. We use own
+bindings in to the service container to perform dependency injection in the whole project for better testability. Our
+BladeServiceProvider register new directory path for layout anonymous components for better blade files organization.
+
