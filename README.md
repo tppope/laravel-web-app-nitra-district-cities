@@ -31,7 +31,7 @@ BladeServiceProvider register new directory path for layout anonymous components
 8. run ```composer install``` command
 9. run ```npm install``` command
 10. run ```php artisan key:generate``` command
-11. run ```php artisan migrate``` command to
+11. run ```php artisan migrate``` command to run database migrations scripts
 12. set your ```QUEUE_CONNECTION``` variable in the ```.env``` file for defining queue driver (I use redis)
     1. if you use redis queue driver, install and use the phpredis PHP extension via PECL
     2. run redis server
