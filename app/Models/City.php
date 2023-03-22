@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class City extends Model
 {
-
     protected $guarded = [];
 
     public function cityHallAddress(): BelongsTo

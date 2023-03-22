@@ -8,5 +8,4 @@ use Illuminate\Support\Collection;
 interface ParserInterface
 {
     public function parseAndImport(Collection $urls): Batch|null;
-
 }

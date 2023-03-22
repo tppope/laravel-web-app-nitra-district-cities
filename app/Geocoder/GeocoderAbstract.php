@@ -8,7 +8,5 @@ abstract class GeocoderAbstract
 {
     public function __construct(protected Geocoder $geocoder)
     {
-
     }
-
 }

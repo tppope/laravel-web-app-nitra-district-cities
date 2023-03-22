@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
+
     return redirect()->back();
 });
 
@@ -24,6 +25,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::prefix('city')->controller(CityController::class)->group(function (){
+Route::prefix('city')->controller(CityController::class)->group(function () {
     Route::get('/{city}', 'show')->whereNumber('city');
 });

@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Parser\ParserInterface;
 use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -21,7 +20,6 @@ class ParseNitraDistrictCities implements ShouldQueue
      */
     public function __construct(protected Collection $nitraSubDistrictsCitiesUrls)
     {
-
     }
 
     /**

@@ -26,6 +26,5 @@ abstract class ParserAbstract
             libxml_clear_errors();
         }
         libxml_use_internal_errors(false);
-
     }
 }

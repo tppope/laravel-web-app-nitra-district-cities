@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\GeocodeNitraDistrictCities as GeocodeNitraDistrictCitiesJob;
 use App\Models\City;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Bus;
-use App\Jobs\GeocodeNitraDistrictCities as GeocodeNitraDistrictCitiesJob;
 
 class GeocodeNitraDistrictCities extends Command
 {
@@ -29,10 +29,9 @@ class GeocodeNitraDistrictCities extends Command
      */
     public function handle(): void
     {
-
         $batch = Bus::batch([])->dispatch();
 
-        City::all()->chunk(30)->each(fn(Collection $chunkCities) => $batch->add(new GeocodeNitraDistrictCitiesJob($chunkCities)));
+        City::all()->chunk(30)->each(fn (Collection $chunkCities) => $batch->add(new GeocodeNitraDistrictCitiesJob($chunkCities)));
 
         $progressBar = $this->output->createProgressBar(100);
 

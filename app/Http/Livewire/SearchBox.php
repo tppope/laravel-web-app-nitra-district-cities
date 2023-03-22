@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\City;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -16,8 +15,9 @@ class SearchBox extends Component
     public function render()
     {
         $cities = $this->search ? City::search($this->search)->pluck('name', 'id') : Collection::make();
+
         return view('livewire.search-box', [
-            'cities' => $cities
+            'cities' => $cities,
         ]);
     }
 

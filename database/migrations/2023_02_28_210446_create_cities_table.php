@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('mayor_name')->nullable();;
+            $table->string('mayor_name')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('fax')->nullable();
-            $table->string('web_address')->nullable();;
-            $table->string('email')->nullable();;
+            $table->string('web_address')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

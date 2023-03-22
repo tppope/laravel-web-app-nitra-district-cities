@@ -27,13 +27,13 @@ class ImportNitraDistrictCities extends Command
      */
     public function handle(ParserInterface $parser): void
     {
-
         $url = 'https://www.e-obce.sk/kraj/NR.html';
 
         try {
             $batch = $parser->parseAndImport(collect($url));
         } catch (ParseErrorException $error) {
             $this->error($error->getMessage());
+
             return;
         }
 
@@ -49,9 +49,5 @@ class ImportNitraDistrictCities extends Command
         $progressBar->setProgress($batch->progress());
 
         $progressBar->finish();
-
-
     }
-
-
 }

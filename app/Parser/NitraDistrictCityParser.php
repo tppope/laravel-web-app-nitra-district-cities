@@ -12,7 +12,6 @@ use Throwable;
 
 class NitraDistrictCityParser extends ParserAbstract implements ParserInterface
 {
-
     /**
      * @throws Throwable
      */
@@ -30,10 +29,8 @@ class NitraDistrictCityParser extends ParserAbstract implements ParserInterface
                 $allSubDistrictsCitiesUrls = $this->getAllSubDistrictsCitiesUrls();
 
                 $batch->add(new ParseNitraDistrictCities($allSubDistrictsCitiesUrls));
-
             });
         });
-
 
         return $batch;
     }
@@ -46,7 +43,7 @@ class NitraDistrictCityParser extends ParserAbstract implements ParserInterface
                 ->getElementById('okres')
                 ?->getElementsByTagName('a')
                 ->getIterator()
-        )->map(fn(DOMNode $node) => $node->attributes->getNamedItem('href')->textContent);
+        )->map(fn (DOMNode $node) => $node->attributes->getNamedItem('href')->textContent);
     }
 
     private function getAllSubDistrictsCitiesUrls(): Collection
@@ -58,7 +55,7 @@ class NitraDistrictCityParser extends ParserAbstract implements ParserInterface
                 ?->getElementsByTagName('a')->getIterator()
         )
             ->filter(
-                fn(DOMNode $node) => $node->childNodes->length === 1
+                fn (DOMNode $node) => $node->childNodes->length === 1
                     && Str::contains(
                         $node
                             ->attributes
@@ -66,10 +63,8 @@ class NitraDistrictCityParser extends ParserAbstract implements ParserInterface
                             ->textContent,
                         '/obec/')
             )
-            ->mapWithKeys(fn(DOMNode $node) => [
-                trim($node->textContent) => $node->attributes->getNamedItem('href')->textContent
+            ->mapWithKeys(fn (DOMNode $node) => [
+                trim($node->textContent) => $node->attributes->getNamedItem('href')->textContent,
             ]);
     }
-
-
 }

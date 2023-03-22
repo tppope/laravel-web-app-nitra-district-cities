@@ -20,7 +20,6 @@ class GeocodeNitraDistrictCities implements ShouldQueue
      */
     public function __construct(protected Collection $cities)
     {
-
     }
 
     /**
